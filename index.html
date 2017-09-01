@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="./highlightjs-copy-button.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        hljs.initCopyButtonOnLoad();
+    </script>
+</head>
+<body>
+<div id="wrapper">
+
+    <pre><code class="php">class Singleton
+{
+    private static
+        $instance = null;
+    /**
+     * @return Singleton
+     */
+    public static function getInstance()
+    {
+        if (null === self::$instance)
+        {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+    private function __clone() {}
+    private function __construct() {}
+    public function test()
+    {
+        var_dump($this);
+    }
+}
+$Object = Singleton::getInstance();
+
+$Object -> test();
+Singleton::getInstance() -> test();
+
+$Object2 = new Singleton(); // Fatal error: Call to private Singleton::__construct() from invalid context
+$Object3 = clone $Object;
+</code></pre>
+
+</div>
+</body>
+</html>
