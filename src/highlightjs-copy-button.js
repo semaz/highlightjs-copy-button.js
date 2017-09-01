@@ -72,7 +72,7 @@
                 'padding: 5px 10px;',
                 'margin: 5px;',
                 'border-radius: 5px;',
-                'border: 1px solid black',
+                'border: 1px solid black;',
                 'cursor: pointer;',
             '}'
         ].join('') ).format(BLOCK_NAME);
