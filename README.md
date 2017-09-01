@@ -2,6 +2,8 @@
 
 Highlight.js copy button plugin.
 
+[DEMO](https://devcreel.github.io/highlightjs-copy-button.js/)
+
 ## Usage
 
 Download plugin and include file after highlight.js:
