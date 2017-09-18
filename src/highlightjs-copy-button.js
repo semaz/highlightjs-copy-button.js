@@ -1,3 +1,4 @@
+/*! highlightjs-copy-button v1.0.3 */
 (function (w) {
     'use strict';
 
