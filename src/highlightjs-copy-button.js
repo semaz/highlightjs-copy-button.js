@@ -1,4 +1,4 @@
-/*! highlightjs-copy-button v1.0.4 */
+/*! highlightjs-copy-button v1.0.5 */
 (function (w) {
     'use strict';
 
@@ -40,7 +40,7 @@
                 el.id = 'hljs-copy-el';
                 document.body.appendChild(el);
             }
-            el.textContent = getTextToCopy(event.currentTarget);
+            el.textContent = event.currentTarget.innerText;
             el.select();
 
             try {
@@ -103,28 +103,6 @@
         } catch (e) {
             console.error('CopyButton error: ', e);
         }
-    }
-
-    function getTextToCopy(element) {
-        if (document.querySelector('.' + LN_CLASS)) {
-            return getTextFromNodes(element);
-        }
-
-        return element.innerText;
-    }
-
-    function getTextFromNodes(element) {
-        var text = [];
-        for (var i = 0, n = element.childNodes.length; i<n; i++) {
-            var child = element.childNodes[i];
-            if (child.className && child.className === LN_CLASS) {
-                text.push(child.innerText);
-            } else  {
-                text.push(getTextFromNodes(child));
-            }
-        }
-
-        return text.join('');
     }
 
     function addCopyButton (element) {
