@@ -1,4 +1,4 @@
-# highlightjs-copy-button.js [![version](http://img.shields.io/badge/release-v1.0.3-brightgreen.svg?style=flat)](https://github.com/DevCreel/highlightjs-copy-button.js/archive/master.zip)
+# highlightjs-copy-button.js [![version](http://img.shields.io/badge/release-v1.0.4-brightgreen.svg?style=flat)](https://github.com/DevCreel/highlightjs-copy-button.js/archive/master.zip)
 
 Highlight.js copy button plugin.
 

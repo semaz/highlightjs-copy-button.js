@@ -1,9 +1,8 @@
-/*! highlightjs-copy-button v1.0.3 */
+/*! highlightjs-copy-button v1.0.4 */
 (function (w) {
     'use strict';
 
     var BLOCK_NAME = 'hljs-button',
-        BUTTON_CLASS = 'hljs-copy-button',
         LN_CLASS = 'hljs-ln-code',
         TEXT_COPY = 'Copy',
         TEXT_ERROR = 'Error',
@@ -29,7 +28,7 @@
 
     function copyCode(event) {
         var target = event.target || event.srcElement;
-        if (target.className === BUTTON_CLASS) {
+        if (target.className === BLOCK_NAME) {
             event.preventDefault();
 
             var el = document.getElementById('post-id-target');
@@ -46,14 +45,14 @@
 
             try {
                 var successful = document.execCommand('copy');
-                target.innerText = successful ? TEXT_COPIED : TEXT_ERROR;
+                target.dataset.title = successful ? TEXT_COPIED : TEXT_ERROR;
                 if (successful) {
                     setTimeout(function () {
-                        target.textContent = TEXT_COPY;
+                        target.dataset.title = TEXT_COPY;
                     }, 2000);
                 }
             } catch (err) {
-                target.innerText = TEXT_ERROR;
+                target.dataset.title = TEXT_ERROR;
             }
         }
     }
@@ -65,16 +64,20 @@
             '.hljs{position: relative}',
             '.hljs:hover .{0}{display: block}',
             '.{0}{',
-                'display: none;',
-                'position: absolute;',
-                'right: 0;',
-                'top: 0;',
-                'background-color: white;',
-                'padding: 5px 10px;',
-                'margin: 5px;',
-                'border-radius: 5px;',
-                'border: 1px solid darkgray;',
-                'cursor: pointer;',
+            'display: none;',
+            'position: absolute;',
+            'right: 0;',
+            'top: 0;',
+            'background-color: white;',
+            'padding: 2px 10px;',
+            'margin: 3px;',
+            'border-radius: 5px;',
+            'border: 1px solid darkgray;',
+            'cursor: pointer;',
+            'box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24);',
+            '}',
+            '.{0}:after{',
+            'content: attr(data-title)',
             '}'
         ].join('') ).format(BLOCK_NAME);
         document.getElementsByTagName('head')[0].appendChild(css);
@@ -129,7 +132,7 @@
             return;
         }
 
-        element.innerHTML = element.innerHTML + ('<div class="{0}"><span class="{1}">{2}</span></div>').format(BLOCK_NAME, BUTTON_CLASS, TEXT_COPY);
+        element.innerHTML = element.innerHTML + ('<div class="{0}" data-title="{1}"></div>').format(BLOCK_NAME, TEXT_COPY);
         element.setAttribute('onclick', "hljs.copyCode(event)");
     }
 
