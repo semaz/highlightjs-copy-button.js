@@ -27,7 +27,8 @@
     }
 
     function copyCode(event) {
-        var target = event.target || event.srcElement;
+        var target = event.target || event.srcElement,
+            scrolltop = document.documentElement.scrollTop; // firefox get scrollTop,chrome Unable to get,
         if (target.className === BLOCK_NAME) {
             event.preventDefault();
 
@@ -36,7 +37,7 @@
                 el = document.createElement("textarea");
                 el.style.position = "absolute";
                 el.style.left = "-9999px";
-                el.style.top = "0";
+                el.style.top = scrolltop + 'px';
                 el.id = 'hljs-copy-el';
                 document.body.appendChild(el);
             }
@@ -61,8 +62,8 @@
         var css = document.createElement('style');
         css.type = 'text/css';
         css.innerHTML = ( [
-            '.hljs{position: relative}',
-            '.hljs:hover .{0}{display: block}',
+            'pre{position: relative}',
+            'pre:hover .{0}{display: block}',
             '.{0}{',
             'display: none;',
             'position: absolute;',
@@ -97,7 +98,7 @@
 
             for (var i in blocks) {
                 if (blocks.hasOwnProperty(i)) {
-                    addCopyButton(blocks[i]);
+                    addCopyButton(blocks[i].parentNode);
                 }
             }
         } catch (e) {
